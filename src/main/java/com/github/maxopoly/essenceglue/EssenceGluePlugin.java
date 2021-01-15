@@ -42,7 +42,10 @@ public final class EssenceGluePlugin extends ACivMod {
 		} else {
 			getLogger().info("Votifier is not enabled, no voting support is possible");
 		}
-		Bukkit.getPluginManager().registerEvents(new ExilePearListener(streakMan, configMan.multiplyPearlCost()), this);
+		if (Bukkit.getPluginManager().isPluginEnabled("ExilePearl")) {
+			Bukkit.getPluginManager().registerEvents(new ExilePearListener(streakMan, configMan.multiplyPearlCost()),
+					this);
+		}
 	}
 
 	public StreakManager getStreakManager() {

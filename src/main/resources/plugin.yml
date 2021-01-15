@@ -2,8 +2,8 @@ name: ${project.name}
 version: ${project.version}
 main: ${project.groupId}.${project.artifactId}.${project.name}Plugin
 api-version: 1.14
-depend: [CivModCore, ExilePearl]
-softdepend: [Votifier]
+depend: [CivModCore]
+softdepend: [Votifier, ExilePearl]
 authors: [Maxopoly]
 commands:
   vote:
