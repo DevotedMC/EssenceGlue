@@ -46,6 +46,7 @@ public final class EssenceGluePlugin extends ACivMod {
 			Bukkit.getPluginManager().registerEvents(new ExilePearListener(streakMan, configMan.multiplyPearlCost()),
 					this);
 		}
+		Bukkit.getPluginManager().registerEvents(new PlayTimeCounter(this), this);
 	}
 
 	public StreakManager getStreakManager() {
