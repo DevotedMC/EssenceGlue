@@ -4,12 +4,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 import vg.civcraft.mc.civmodcore.playersettings.PlayerSettingAPI;
 import vg.civcraft.mc.civmodcore.playersettings.impl.LongSetting;
 
-public class PlayTimeCounter {
+public class PlayTimeCounter implements Listener {
 	
 	private static final long maxPlayTime = 10 * 60;
 	private static final String bypassPerm = "devoted.hrs";
