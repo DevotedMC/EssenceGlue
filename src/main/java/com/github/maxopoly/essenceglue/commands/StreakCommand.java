@@ -18,7 +18,7 @@ public class StreakCommand extends StandaloneCommand {
 	@Override
 	public boolean execute(CommandSender sender, String[] args) {
 		Player p = (Player) sender;
-		UUID uuid = StreakManager.getTrueUUID(p.getUniqueId());
+		UUID uuid = p.getUniqueId();
 		StreakManager streakMan = EssenceGluePlugin.instance().getStreakManager();
 		p.sendMessage(ChatColor.GREEN + "Your current login streak is " + streakMan.getRecalculatedCurrentStreak(uuid));
 		long cooldown = streakMan.getRewardCooldown(uuid);

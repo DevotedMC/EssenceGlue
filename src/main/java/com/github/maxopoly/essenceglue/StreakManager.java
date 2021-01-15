@@ -61,32 +61,11 @@ public class StreakManager {
 		this.giveRewardToPearled = giveRewardToPearled;
 		this.countRequiredForGain = TimeUnit.MILLISECONDS.toMinutes(onlineTimePerDay);
 	}
-	
-	public static UUID getTrueUUID(UUID uuid) {
-		UUID cached = mainAccountCache.get(uuid);
-		if (cached != null) {
-			return cached;
-		}
-		BSPlayer bsPlayer = BSPlayer.byUUID(uuid);
-		if (bsPlayer == null) {
-			return null;
-		}
-		long minID = bsPlayer.getId();
-		BSPlayer ogAcc = bsPlayer;
-		for (BSPlayer alt : bsPlayer.getTransitiveSharedPlayers(true)) {
-			if (alt.getId() < minID) {
-				minID = alt.getId();
-				ogAcc = alt;
-			}
-		}
-		mainAccountCache.put(uuid, ogAcc.getUUID());
-		return ogAcc.getUUID();
-	}
 
 	private void updateAll() {
 		long currentMillis = System.currentTimeMillis();
 		for (Player p : Bukkit.getOnlinePlayers()) {
-			UUID uuid = getTrueUUID(p.getUniqueId());
+			UUID uuid = p.getUniqueId();
 			if (uuid == null) {
 				EssenceGluePlugin.instance().getLogger().severe(p.getName() + " had main account in BanStick?");
 				continue;
@@ -98,10 +77,10 @@ public class StreakManager {
 					updatePlayerStreak(uuid);
 					currentOnlineTime.remove(uuid);
 					p.sendMessage(ChatColor.GREEN + "Your login streak is now " + ChatColor.LIGHT_PURPLE
-							+ getCurrentStreak(uuid, true));
+							+ getCurrentStreak(uuid));
 					if (giveRewardToPearled || ExilePearlPlugin.getApi().getExiledAlts(uuid, true) < 1) {
 						EssenceGluePlugin.instance().getRewardManager().giveLoginReward(p,
-								getCurrentStreak(uuid, true));
+								getCurrentStreak(uuid));
 					}
 				} else {
 					currentOnlineTime.put(uuid, currentCount + 1);
@@ -152,15 +131,11 @@ public class StreakManager {
 		lastPlayerUpdate.setValue(player, now);
 	}
 
-	public int getCurrentStreak(UUID uuid, boolean isMain) {
-		if (!isMain) {
-			uuid = getTrueUUID(uuid);
-		}
+	public int getCurrentStreak(UUID uuid) {
 		return Integer.bitCount(playerStreaks.getValue(uuid));
 	}
 	
 	public int getRecalculatedCurrentStreak(UUID uuid) {
-		uuid = getTrueUUID(uuid);
 		int unshiftedValue = playerStreaks.getValue(uuid);
 		long timePassed = System.currentTimeMillis() - lastPlayerUpdate.getValue(uuid) - streakGracePeriod;
 		int daysPassed = 0;

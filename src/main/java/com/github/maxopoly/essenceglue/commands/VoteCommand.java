@@ -32,7 +32,7 @@ public class VoteCommand extends StandaloneCommand {
 		}
 		Player p = (Player) sender;
 		for (VotingSite site : EssenceGluePlugin.instance().getConfigManager().getVotingCooldowns().values()) {
-			UUID trueUUID = StreakManager.getTrueUUID(p.getUniqueId());
+			UUID trueUUID = p.getUniqueId();
 			long lastVote = voteMan.getLastVote(site.getInternalKey(), trueUUID);
 			boolean canVote = (System.currentTimeMillis() - lastVote) > site.getVotingCooldown();
 			if (canVote) {

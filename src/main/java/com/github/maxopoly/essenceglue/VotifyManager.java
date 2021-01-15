@@ -69,7 +69,7 @@ public class VotifyManager implements Listener {
 					+ vote.getServiceName());
 			return;
 		}
-		UUID uuid = StreakManager.getTrueUUID(player.getUniqueId());
+		UUID uuid = player.getUniqueId();
 		LongSetting serverCooldown = perSiteSettings.get(vote.getServiceName());
 		long lastVoted = serverCooldown.getValue(uuid);
 		long now = System.currentTimeMillis();
