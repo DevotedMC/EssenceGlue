@@ -14,7 +14,7 @@
 	<artifactId>essenceglue</artifactId>
 	<name>EssenceGlue</name>
 
-	<version>1.1.1</version>
+	<version>1.1.1D</version>
 
 	<dependencies>
 		<dependency>
@@ -26,19 +26,13 @@
 		<dependency>
 			<groupId>vg.civcraft.mc.civmodcore</groupId>
 			<artifactId>CivModCore</artifactId>
-			<version>1.8.1</version>
+			<version>1.8.2D</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.vexsoftware</groupId>
 			<artifactId>nuvotifier-universal</artifactId>
 			<version>2.6.0</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.programmerdan.minecraft</groupId>
-			<artifactId>banstick</artifactId>
-			<version>1.2.1</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
