@@ -26,8 +26,10 @@ public class PlayTimeCounter implements Listener {
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void onJoin(PlayerJoinEvent event) {
 		if (!event.getPlayer().hasPermission(bypassPerm) && getTime(event.getPlayer()) > maxPlayTime) {
-			System.out.println("Lobbying " +event.getPlayer().getName() + ", playtime was " + maxPlayTime);
-			event.getPlayer().chat("/lobby");
+			System.out.println("Would be Lobbying " +event.getPlayer().getName() + ", playtime was " + maxPlayTime);
+			//This doesn't work since we cannot execute Bungee commands without the help of another plugin/implementation
+			//Example: We use ponycau's bungeebridge plugin to make the lobby hole work using /worldspawn
+			//event.getPlayer().chat("/lobby");
 			return;
 		}
 	}
